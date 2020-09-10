@@ -23,6 +23,11 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name="com.meizu.flyme.indpay.process.pay.activity.IndPayActivity"
+            android:theme="@style/Theme.AppCompat.Translucent"
+            tools:replace="android:theme" />
+
     </application>
 
 </manifest>

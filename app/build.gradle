@@ -4,7 +4,21 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+def keystorePropertiesFile = rootProject.file("keystore.properties")
+def keystoreProperties = new Properties()
+keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
 android {
+
+    signingConfigs {
+        mstore {
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+            storeFile rootProject.file("keystore/mstore_demo.jks")
+            storePassword keystoreProperties['storePassword']
+        }
+    }
+
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.meizu.mstore.sdk.demo"
@@ -15,6 +29,9 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
+        debug {
+            signingConfig signingConfigs.mstore
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'

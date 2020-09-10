@@ -113,3 +113,8 @@ com_crashlytics_export_strings.xml
 libwebp
 .DS_Store
 **/ndkHelperBin
+
+*.keystore
+*.jks
+keystore.properties
+mstore_demo.png
